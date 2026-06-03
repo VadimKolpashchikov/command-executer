@@ -1,0 +1,25 @@
+import type { IStreamLogger } from '../../core/handlers/streamLogger.interface.ts';
+
+export class ConsoleLogger implements IStreamLogger {
+  private static instance: ConsoleLogger;
+
+  private constructor() {}
+
+  public static getInstance(): ConsoleLogger {
+    if (!this.instance) {
+      this.instance = new ConsoleLogger();
+    }
+
+    return this.instance;
+  }
+
+  log(...args: any[]): void {
+    console.log(...args);
+  }
+  error(...args: any[]): void {
+    console.error(...args);
+  }
+  end(): void {
+    console.log('Process done!');
+  }
+}
