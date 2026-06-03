@@ -1,6 +1,10 @@
+import { PromptService } from './core/prompt/prompt.service.ts';
+
 class App {
-  run() {
-    console.log('done');
+  async run() {
+    const result = await new PromptService().input('Enter your name:', 'input');
+
+    console.log(result);
   }
 }
 
