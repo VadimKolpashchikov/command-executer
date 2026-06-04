@@ -11,7 +11,7 @@ export abstract class CommandExecutor<Input> {
 
   protected abstract spawn(
     command: ICommandExecutor,
-  ): ChildProcessWithoutNullStreams;
+  ): Promise<ChildProcessWithoutNullStreams>;
 
   protected abstract processStream(
     stream: ChildProcessWithoutNullStreams,
@@ -21,7 +21,7 @@ export abstract class CommandExecutor<Input> {
   public async execute() {
     const input = await this.prompt();
     const command = this.build(input);
-    const stream = this.spawn(command);
+    const stream = await this.spawn(command);
     this.processStream(stream, this.logger);
   }
 }
