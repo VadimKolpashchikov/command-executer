@@ -17,8 +17,8 @@ export class FfmpegBuilder {
   }
 
   output(outputPath: string): string[] {
-    if (this.inputPath) {
-      throw new Error('Parameter input not found');
+    if (!this.inputPath) {
+      throw new Error('Inputted file not found');
     }
 
     const args: string[] = ['-i', this.inputPath];
